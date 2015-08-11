@@ -110,7 +110,12 @@ public class ConnectionActivity extends AppCompatActivity implements ConnectionF
 
     @Override
     public void saveDeviceStartControl(BluetoothDevice device) {
+        // Save the device in app context
+        BluBot.setCurrentDevice(device);
 
+        // Start Control activity
+        Intent intent = new Intent(getApplicationContext(), ControlActivity.class);
+        startActivity(intent);
     }
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {

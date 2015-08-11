@@ -2,6 +2,12 @@ package com.myapp.blubot;
 
 import android.app.Application;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.UUID;
 
 /**
  * Project : BluBot
@@ -9,7 +15,12 @@ import android.bluetooth.BluetoothDevice;
  */
 public class BluBot extends Application{
 
+    //SerialPortService ID;
+    private static final UUID DEVICE_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
+
     private static BluetoothDevice currentDevice = null;
+    private static OutputStream outputStream = null;
+    private static InputStream inputStream = null;
 
     @Override
     public void onCreate() {
@@ -18,9 +29,30 @@ public class BluBot extends Application{
 
     public static void setCurrentDevice(BluetoothDevice currentDevice) {
         BluBot.currentDevice = currentDevice;
+        connectToDevice();
     }
 
-    public static BluetoothDevice getCurrentDevice() {
-        return currentDevice;
+    private static void connectToDevice()
+    {
+        BluetoothSocket mmSocket;
+        try {
+            mmSocket = currentDevice.createRfcommSocketToServiceRecord(DEVICE_UUID);
+            mmSocket.connect();
+
+            outputStream = mmSocket.getOutputStream();
+            inputStream = mmSocket.getInputStream();
+            
+        } catch (IOException e) {
+            android.util.Log.e("BluBot", e.getLocalizedMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static InputStream getInputStream() {
+        return inputStream;
+    }
+
+    public static OutputStream getOutputStream() {
+        return outputStream;
     }
 }
