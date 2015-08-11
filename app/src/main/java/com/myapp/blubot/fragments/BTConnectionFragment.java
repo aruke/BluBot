@@ -1,51 +1,43 @@
 package com.myapp.blubot.fragments;
 
 import android.app.Activity;
-import android.net.Uri;
+import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import com.myapp.blubot.ConnectionFragmentListener;
 import com.myapp.blubot.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link BTConnectionFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link BTConnectionFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class BTConnectionFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private static final String LOGCAT = BTConnectionFragment.class.getName();
 
-    private OnFragmentInteractionListener mListener;
+    static ArrayList<BluetoothDevice> devices = new ArrayList<>();
+    private ArrayAdapter<String> adapter;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BTConnectionFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static BTConnectionFragment newInstance(String param1, String param2) {
-        BTConnectionFragment fragment = new BTConnectionFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @Bind(R.id.fragment_bt_connection_list)
+    ListView btListView;
+
+    private ConnectionFragmentListener mListener;
+
+    public static BTConnectionFragment newInstance(String param1) {
+        return new BTConnectionFragment();
     }
 
     public BTConnectionFragment() {
@@ -53,36 +45,27 @@ public class BTConnectionFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bt_connection, container, false);
-    }
+        View rootView = inflater.inflate(R.layout.fragment_bt_connection, container, false);
+        ButterKnife.bind(this, rootView);
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, new ArrayList<String>());
+        btListView.setAdapter(adapter);
+
+        discoverDevices();
+        return rootView;
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            mListener = (ConnectionFragmentListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement ConnectionFragmentListener");
         }
     }
 
@@ -92,19 +75,45 @@ public class BTConnectionFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+    private void discoverDevices() {
+        // Register the BroadcastReceiver
+        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+        getActivity().registerReceiver(bluetoothReceiver, filter); // Unregister during onDestroy
+
+        // Clear old devices
+        devices.clear();
+
+        // Start discovery // Need BLUETOOTH_ADMIN permission
+        boolean discoveryStarted = mListener.startBTDeviceDiscovery();
+        if(!discoveryStarted)
+            Toast.makeText(getActivity(), "Blutooth discovery failed.", Toast.LENGTH_LONG).show();
+        Log.e(LOGCAT, "Discovery started");
+        Toast.makeText(getActivity(),"",Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().unregisterReceiver(bluetoothReceiver);
+    }
+
+    // Create a BroadcastReceiver for discovery of bluetooth devices
+    private final BroadcastReceiver bluetoothReceiver = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            // When discovery finds a device
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                // Get the BluetoothDevice object from the Intent
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                // Add the name and address to an array adapter to show in a ListView
+                adapter.add(device.getName() + "\n" + device.getAddress());
+                devices.add(device);
+                android.util.Log.e(LOGCAT, device.getName() + "\n" + device.getAddress());
+                Toast.makeText(getActivity(),"",Toast.LENGTH_SHORT).show();
+            }else {
+                android.util.Log.e(LOGCAT, "Action : " + action + " is not bluetooth related.");
+                Toast.makeText(getActivity(),"",Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
 }

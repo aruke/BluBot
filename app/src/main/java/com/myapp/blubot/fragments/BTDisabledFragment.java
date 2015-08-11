@@ -1,51 +1,34 @@
 package com.myapp.blubot.fragments;
 
 import android.app.Activity;
-import android.net.Uri;
+import android.bluetooth.BluetoothAdapter;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.myapp.blubot.ConnectionFragmentListener;
 import com.myapp.blubot.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link BTDisabledFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link BTDisabledFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class BTDisabledFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private static final int REQUEST_ENABLE_BT = 1123;
+    private ConnectionFragmentListener mListener;
 
-    private OnFragmentInteractionListener mListener;
+    @Bind(R.id.fragment_bt_disabled_on_button)
+    Button turnBTOnButton;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BTDisabledFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static BTDisabledFragment newInstance(String param1, String param2) {
-        BTDisabledFragment fragment = new BTDisabledFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public static BTDisabledFragment newInstance() {
+        return new BTDisabledFragment();
     }
 
     public BTDisabledFragment() {
@@ -53,25 +36,34 @@ public class BTDisabledFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bt_disabled, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_bt_disabled, container, false);
+        ButterKnife.bind(this, rootView);
+        return rootView;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+    @OnClick(R.id.fragment_bt_disabled_on_button)
+    public void turnBTOn(View view)
+    {
+        Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+        startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+        Log.e("BT DISABLED", "starting bluetooth enable intent");
+        Toast.makeText(getActivity(),"",Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == REQUEST_ENABLE_BT)
+        {
+            // If user replies affirmative to bluetooth request then start discovery else finish
+            if(resultCode==Activity.RESULT_OK) {
+                Log.e("BT DISABLED", "Yes bluetooth is on and im passing control to activity");
+                Toast.makeText(getActivity(),"",Toast.LENGTH_SHORT).show();
+                mListener.onBluetoothTurnedOn();
+            }
         }
     }
 
@@ -79,10 +71,10 @@ public class BTDisabledFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            mListener = (ConnectionFragmentListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement ConnectionFragmentListener");
         }
     }
 
@@ -91,20 +83,4 @@ public class BTDisabledFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
-    }
-
 }

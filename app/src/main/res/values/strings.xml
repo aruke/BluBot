@@ -1,11 +1,7 @@
 <resources>
     <string name="app_name">BluBot</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_connection">BluBot Connection</string>
-    <string name="title_activity_control">ControlActivity</string>
+    <string name="title_activity_control">BluBot Control</string>
 </resources>
