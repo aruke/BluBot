@@ -4,9 +4,75 @@
     android:layout_height="match_parent"
     tools:context="com.myapp.blubot.fragments.BTUnavailableFragment">
 
-    <TextView
+    <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="bluetooth unavailable" />
+        android:layout_height="@dimen/toolbar_triple_height"
+        android:paddingTop="@dimen/toolbar_half_height"
+        android:background="?attr/colorPrimary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/toolbar_half_height"
+            android:layout_gravity="top|center_horizontal"
+            android:text="@string/app_name"
+            android:textColor="@color/icons"
+            android:textSize="48dp"/>
+        </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="@dimen/toolbar_double_height"
+        card_view:cardCornerRadius="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:src="@drawable/ic_bluetooth_disabled"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textSize="24sp"
+                android:textColor="@color/primaryTextColor"
+                android:text="Bluetooth Not Available"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:textSize="18sp"
+                android:textColor="@color/secondaryTextColor"
+                android:gravity="center"
+                android:text="BlueBot can not find Bluetooth on this device. Either this device doesn't have Bluetooth module or BluBot has some bug. If your device has Bluetooth and BlueBot is not detecting it, create an issue on GitHub."/>
+
+            <TextView
+                android:id="@+id/fragment_bt_unavailable_github_link"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/linkTextColor"
+                android:text="GitHub"/>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
 
 </FrameLayout>

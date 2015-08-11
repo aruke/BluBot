@@ -1,19 +1,28 @@
 package com.myapp.blubot.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.myapp.blubot.R;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class BTUnavailableFragment extends Fragment {
 
-    public static BTUnavailableFragment newInstance() {
+    @Bind(R.id.fragment_bt_unavailable_github_link)
+    TextView githubLink;
 
+    public static BTUnavailableFragment newInstance() {
         return new BTUnavailableFragment();
     }
 
@@ -25,6 +34,18 @@ public class BTUnavailableFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bt_unavailable, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_bt_unavailable, container, false);
+        ButterKnife.bind(this, rootView);
+        githubLink.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+        return rootView;
+    }
+
+    @OnClick(R.id.fragment_bt_unavailable_github_link)
+    void onGithubLinkClicked(View view)
+    {
+        String url = getString(R.string.github_repo_url);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
     }
 }

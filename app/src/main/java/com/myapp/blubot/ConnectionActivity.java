@@ -1,6 +1,7 @@
 package com.myapp.blubot;
 
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -72,9 +73,6 @@ public class ConnectionActivity extends AppCompatActivity implements ConnectionF
     @Override
     public void onDestroy() {
         super.onDestroy();
-
-    /* ... */
-
         // Unregister broadcast listeners
         unregisterReceiver(mReceiver);
     }
@@ -108,6 +106,11 @@ public class ConnectionActivity extends AppCompatActivity implements ConnectionF
     public boolean startBTDeviceDiscovery() {
         Log.e("ConnectionActivity", "Discovery started");
         return mBluetoothAdapter.startDiscovery();
+    }
+
+    @Override
+    public void saveDeviceStartControl(BluetoothDevice device) {
+
     }
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {

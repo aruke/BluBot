@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.myapp.blubot.BluetoothDeviceAdapter;
 import com.myapp.blubot.ConnectionFragmentListener;
 import com.myapp.blubot.R;
 
@@ -29,7 +30,8 @@ public class BTConnectionFragment extends Fragment {
     private static final String LOGCAT = BTConnectionFragment.class.getName();
 
     static ArrayList<BluetoothDevice> devices = new ArrayList<>();
-    private ArrayAdapter<String> adapter;
+    //private ArrayAdapter<String> adapter;
+    private BluetoothDeviceAdapter adapter;
 
     @Bind(R.id.fragment_bt_connection_list)
     ListView btListView;
@@ -51,7 +53,7 @@ public class BTConnectionFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_bt_connection, container, false);
         ButterKnife.bind(this, rootView);
 
-        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, new ArrayList<String>());
+        adapter = new BluetoothDeviceAdapter(getActivity(), devices);
         btListView.setAdapter(adapter);
 
         discoverDevices();
@@ -106,8 +108,8 @@ public class BTConnectionFragment extends Fragment {
                 // Get the BluetoothDevice object from the Intent
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 // Add the name and address to an array adapter to show in a ListView
-                adapter.add(device.getName() + "\n" + device.getAddress());
                 devices.add(device);
+                adapter.notifyDataSetChanged();
                 android.util.Log.e(LOGCAT, device.getName() + "\n" + device.getAddress());
                 Toast.makeText(getActivity(),"",Toast.LENGTH_SHORT).show();
             }else {
