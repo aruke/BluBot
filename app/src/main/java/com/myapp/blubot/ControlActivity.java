@@ -3,6 +3,7 @@ package com.myapp.blubot;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -43,7 +44,7 @@ public class ControlActivity extends AppCompatActivity {
         outputStream = BluBot.getOutputStream();
 
         if (outputStream == null) {
-            // TODO Handle exception here
+            Toast.makeText(this, "Device not Paired properly : OutputStream null", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -86,7 +87,7 @@ public class ControlActivity extends AppCompatActivity {
             }
         }catch (IOException e)
         {
-
+            Toast.makeText(this, "Could not send signal", Toast.LENGTH_SHORT).show();
         }
     }
 
