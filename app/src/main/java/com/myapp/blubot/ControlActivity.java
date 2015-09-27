@@ -44,7 +44,6 @@ public class ControlActivity extends AppCompatActivity {
 
         if (outputStream == null) {
             // TODO Handle exception here
-
         }
     }
 
