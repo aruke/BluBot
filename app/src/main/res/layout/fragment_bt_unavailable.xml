@@ -20,35 +20,54 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:src="@drawable/ic_bluetooth_disabled" />
+            android:src="@drawable/ic_bluetooth_disabled"
+            android:contentDescription="@string/bluetooth_not_available" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="Bluetooth Not Available"
-            android:textColor="@color/primaryTextColor"
-            android:textSize="24sp" />
+            android:text="@string/bluetooth_not_available"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/primaryTextColor" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:gravity="center"
-            android:text="BlueBot can not find Bluetooth on this device. Either this device doesn't have Bluetooth module or BluBot has some bug. If your device has Bluetooth and BlueBot is not detecting it, create an issue on GitHub."
-            android:textColor="@color/secondaryTextColor"
-            android:textSize="18sp" />
+            android:text="@string/bluetooth_na_description"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/secondaryTextColor" />
 
-        <TextView
-            android:id="@+id/fragment_bt_unavailable_github_link"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:gravity="center"
-            android:text="GitHub"
-            android:textColor="@color/linkTextColor"
-            android:textSize="20sp" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/fragment_bt_unavailable_github_link"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:text="@string/GitHub"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/linkTextColor" />
+
+            <TextView
+                android:id="@+id/fragment_bt_unavailable_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:text="@string/email_developer"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/linkTextColor" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </android.support.v7.widget.CardView>
-

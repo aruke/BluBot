@@ -94,7 +94,6 @@ public class BTConnectionFragment extends Fragment {
                 devices.add(device);
                 adapter.notifyDataSetChanged();
                 android.util.Log.e(LOGCAT, device.getName() + "\n" + device.getAddress());
-                Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
             } else {
                 android.util.Log.e(LOGCAT, "Action : " + action + " is not bluetooth related.");
                 Toast.makeText(getActivity(), "Action : " + action + " is not bluetooth related.", Toast.LENGTH_SHORT).show();
@@ -103,12 +102,12 @@ public class BTConnectionFragment extends Fragment {
     };
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
         try {
-            mListener = (ConnectionFragmentListener) activity;
+            mListener = (ConnectionFragmentListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
+            throw new ClassCastException(context.toString()
                     + " must implement ConnectionFragmentListener");
         }
     }

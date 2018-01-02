@@ -2,13 +2,13 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     card_view:cardCornerRadius="2dp"
     tools:context=".ui.fragments.BTDisabledFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -20,33 +20,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:contentDescription="@string/bluetooth_disabled"
             android:src="@drawable/ic_bluetooth_disabled" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="Bluetooth Disabled"
-            android:textColor="@color/primaryTextColor"
-            android:textSize="24sp" />
+            android:text="@string/bluetooth_disabled"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/primaryTextColor" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:gravity="center"
-            android:text="Bluetooth is disabled. Click button to turn it on."
-            android:textColor="@color/secondaryTextColor"
-            android:textSize="18sp" />
+            android:text="@string/bt_disabled_description"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/secondaryTextColor" />
 
         <Button
             android:id="@+id/fragment_bt_disabled_on_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Turn Bluetooth On"
-            android:textSize="18sp" />
+            android:text="@string/turn_bluetooth_on" />
     </LinearLayout>
 
 </android.support.v7.widget.CardView>
-

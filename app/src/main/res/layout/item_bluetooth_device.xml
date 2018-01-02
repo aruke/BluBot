@@ -7,16 +7,17 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:layout_gravity="center_vertical"
-        android:src="@drawable/ic_action_bluetooth"/>
+        android:src="@drawable/ic_action_bluetooth"
+        android:contentDescription="@string/cd_bluetooth_device" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginLeft="8dp"
         android:layout_weight="1">
 
         <TextView
@@ -25,20 +26,17 @@
             android:layout_height="wrap_content"
             android:paddingTop="4dp"
             android:paddingBottom="2dp"
-            android:textSize="18dp"
-            android:text="INSPIRON"
             android:textColor="@color/primaryTextColor"
             android:singleLine="true"/>
+
         <TextView
             android:id="@+id/item_bluetooth_device_ssid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="2dp"
             android:paddingBottom="4dp"
-            android:textSize="14dp"
             android:textColor="@color/secondaryTextColor"
-            android:text="84:A6:C8:13:62:C0"
             android:singleLine="true"/>
+
     </LinearLayout>
 
 </LinearLayout>

@@ -18,6 +18,7 @@
             android:layout_margin="@dimen/circle_button_margin"
             android:adjustViewBounds="true"
             android:src="@drawable/ic_button_a"
+            android:contentDescription="@string/cd_button_a"
             app:cb_color="@color/circleButtonColor"
             app:cb_pressedRingWidth="@dimen/circle_button_ring_width"
             app:layout_columnWeight="1" />
@@ -29,6 +30,7 @@
             android:layout_margin="@dimen/circle_button_margin"
             android:adjustViewBounds="true"
             android:src="@drawable/ic_button_dir_up"
+            android:contentDescription="@string/cd_button_up"
             app:cb_color="@color/circleButtonColor"
             app:cb_pressedRingWidth="@dimen/circle_button_ring_width"
             app:layout_columnWeight="1" />
@@ -40,6 +42,7 @@
             android:layout_margin="@dimen/circle_button_margin"
             android:adjustViewBounds="true"
             android:src="@drawable/ic_button_b"
+            android:contentDescription="@string/cd_button_b"
             app:cb_color="@color/circleButtonColor"
             app:cb_pressedRingWidth="@dimen/circle_button_ring_width"
             app:layout_columnWeight="1" />
@@ -51,6 +54,7 @@
             android:layout_margin="@dimen/circle_button_margin"
             android:adjustViewBounds="true"
             android:src="@drawable/ic_button_dir_left"
+            android:contentDescription="@string/cd_button_left"
             app:cb_color="@color/circleButtonColor"
             app:cb_pressedRingWidth="@dimen/circle_button_ring_width"
             app:layout_columnWeight="1" />
@@ -62,6 +66,7 @@
             android:layout_margin="@dimen/circle_button_margin"
             android:adjustViewBounds="true"
             android:src="@drawable/ic_button_dir_close"
+            android:contentDescription="@string/cd_button_close"
             app:cb_color="@color/circleButtonColor"
             app:cb_pressedRingWidth="@dimen/circle_button_ring_width"
             app:layout_columnWeight="1" />
@@ -73,6 +78,7 @@
             android:layout_margin="@dimen/circle_button_margin"
             android:adjustViewBounds="true"
             android:src="@drawable/ic_button_dir_right"
+            android:contentDescription="@string/cd_button_right"
             app:cb_color="@color/circleButtonColor"
             app:cb_pressedRingWidth="@dimen/circle_button_ring_width"
             app:layout_columnWeight="1" />
@@ -84,6 +90,7 @@
             android:layout_margin="@dimen/circle_button_margin"
             android:adjustViewBounds="true"
             android:src="@drawable/ic_button_c"
+            android:contentDescription="@string/cd_button_c"
             app:cb_color="@color/circleButtonColor"
             app:cb_pressedRingWidth="@dimen/circle_button_ring_width"
             app:layout_columnWeight="1" />
@@ -95,6 +102,7 @@
             android:layout_margin="@dimen/circle_button_margin"
             android:adjustViewBounds="true"
             android:src="@drawable/ic_button_dir_down"
+            android:contentDescription="@string/cd_button_down"
             app:cb_color="@color/circleButtonColor"
             app:cb_pressedRingWidth="@dimen/circle_button_ring_width"
             app:layout_columnWeight="1" />
@@ -107,6 +115,7 @@
             android:adjustViewBounds="true"
             android:src="@drawable/ic_button_d"
             app:cb_color="@color/circleButtonColor"
+            android:contentDescription="@string/cd_button_d"
             app:cb_pressedRingWidth="@dimen/circle_button_ring_width"
             app:layout_columnWeight="1" />
 

@@ -47,26 +47,20 @@ public class ConnectionActivity extends AppCompatActivity implements ConnectionF
         if (!mBluetoothAdapter.isEnabled()) {
             // If Bluetooth is disabled then prompt user to start it
             setFragmentView(STATUS_BLUETOOTH_OFF);
-            return;
+        } else {
+            // If everything is OK start searching for bluetooth devices
+            setFragmentView(STATUS_BLUETOOTH_ON);
         }
-
-        // If everything is OK start searching for bluetooth devices
-        setFragmentView(STATUS_BLUETOOTH_ON);
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
 
         // Register for broadcasts on BluetoothAdapter state change
         IntentFilter filter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
         registerReceiver(mReceiver, filter);
+
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
         // Unregister broadcast listeners
         unregisterReceiver(mReceiver);
     }
@@ -81,7 +75,7 @@ public class ConnectionActivity extends AppCompatActivity implements ConnectionF
                 transaction.replace(R.id.activity_connection_layout, BTDisabledFragment.newInstance()).commit();
                 return;
             case STATUS_BLUETOOTH_ON:
-                transaction.replace(R.id.activity_connection_layout, BTConnectionFragment.newInstance(null)).commit();
+                transaction.replace(R.id.activity_connection_layout, BTConnectionFragment.newInstance(null)).commitAllowingStateLoss();
                 return;
             default:
                 throw new RuntimeException("Invalid fragment status.");
