@@ -1,4 +1,4 @@
-package com.myapp.blubot.fragments;
+package com.myapp.blubot.ui.fragments;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
@@ -16,8 +16,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.myapp.blubot.BluetoothDeviceAdapter;
-import com.myapp.blubot.ConnectionFragmentListener;
+import com.myapp.blubot.ui.BluetoothDeviceAdapter;
+import com.myapp.blubot.ui.ConnectionFragmentListener;
 import com.myapp.blubot.R;
 
 import java.util.ArrayList;

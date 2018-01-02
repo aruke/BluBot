@@ -1,4 +1,4 @@
-package com.myapp.blubot;
+package com.myapp.blubot.ui;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.myapp.blubot.R;
 
 import java.util.List;
 

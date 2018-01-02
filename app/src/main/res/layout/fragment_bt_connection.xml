@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     card_view:cardCornerRadius="2dp"
-    tools:context="com.myapp.blubot.fragments.BTConnectionFragment">
+    tools:context=".ui.fragments.BTConnectionFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.myapp.blubot;
+package com.myapp.blubot.ui;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -12,9 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.myapp.blubot.fragments.BTConnectionFragment;
-import com.myapp.blubot.fragments.BTDisabledFragment;
-import com.myapp.blubot.fragments.BTUnavailableFragment;
+import com.myapp.blubot.BluBot;
+import com.myapp.blubot.R;
+import com.myapp.blubot.ui.fragments.BTConnectionFragment;
+import com.myapp.blubot.ui.fragments.BTDisabledFragment;
+import com.myapp.blubot.ui.fragments.BTUnavailableFragment;
 
 import java.util.UUID;
 

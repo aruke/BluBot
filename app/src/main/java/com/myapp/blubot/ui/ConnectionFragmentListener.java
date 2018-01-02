@@ -1,4 +1,4 @@
-package com.myapp.blubot;
+package com.myapp.blubot.ui;
 
 import android.bluetooth.BluetoothDevice;
 

@@ -1,4 +1,4 @@
-package com.myapp.blubot.fragments;
+package com.myapp.blubot.ui.fragments;
 
 import android.content.Intent;
 import android.graphics.Paint;

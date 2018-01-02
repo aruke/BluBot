@@ -11,19 +11,19 @@
         android:label="@string/app_name"
         android:name=".BluBot"
         android:theme="@style/AppTheme" >
+
         <activity
-            android:name=".ConnectionActivity"
-            android:label="@string/title_activity_connection" >
+            android:name=".ui.ConnectionActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".ControlActivity"
-            android:label="@string/title_activity_control" >
+            android:name=".ui.ControlActivity" >
         </activity>
+
     </application>
 
 </manifest>

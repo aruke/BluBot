@@ -1,4 +1,4 @@
-package com.myapp.blubot.fragments;
+package com.myapp.blubot.ui.fragments;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.myapp.blubot.ConnectionFragmentListener;
+import com.myapp.blubot.ui.ConnectionFragmentListener;
 import com.myapp.blubot.R;
 
 import butterknife.BindView;
