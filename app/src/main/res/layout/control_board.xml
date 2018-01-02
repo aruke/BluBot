@@ -1,120 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white"
-    app:columnCount="3">
+    android:layout_height="match_parent">
 
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@android:color/white"
+        app:columnCount="3">
 
-    <android.support.v7.widget.Space
-        app:layout_columnSpan="3"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1" />
+        <at.markushi.ui.CircleButton
+            android:id="@+id/control_board_button_a"
+            android:layout_width="@dimen/circle_button_size"
+            android:layout_height="@dimen/circle_button_size"
+            android:layout_margin="@dimen/circle_button_margin"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_button_a"
+            app:cb_color="@color/circleButtonColor"
+            app:cb_pressedRingWidth="@dimen/circle_button_ring_width"
+            app:layout_columnWeight="1" />
 
-    <at.markushi.ui.CircleButton
-        android:id="@+id/control_board_button_a"
-        android:src="@drawable/ic_button_a"
-        android:layout_width="@dimen/circle_button_size"
-        android:layout_height="@dimen/circle_button_size"
-        android:layout_margin="@dimen/circle_button_margin"
-        android:adjustViewBounds="true"
-        app:layout_columnWeight="1"
-        app:cb_color="@color/circleButtonColor"
-        app:cb_pressedRingWidth="@dimen/circle_button_ring_width" />
+        <at.markushi.ui.CircleButton
+            android:id="@+id/control_board_button_up"
+            android:layout_width="@dimen/circle_button_size"
+            android:layout_height="@dimen/circle_button_size"
+            android:layout_margin="@dimen/circle_button_margin"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_button_dir_up"
+            app:cb_color="@color/circleButtonColor"
+            app:cb_pressedRingWidth="@dimen/circle_button_ring_width"
+            app:layout_columnWeight="1" />
 
-    <at.markushi.ui.CircleButton
-        android:id="@+id/control_board_button_up"
-        android:src="@drawable/ic_button_dir_up"
-        android:layout_width="@dimen/circle_button_size"
-        android:layout_height="@dimen/circle_button_size"
-        android:layout_margin="@dimen/circle_button_margin"
-        android:adjustViewBounds="true"
-        app:layout_columnWeight="1"
-        app:cb_color="@color/circleButtonColor"
-        app:cb_pressedRingWidth="@dimen/circle_button_ring_width" />
+        <at.markushi.ui.CircleButton
+            android:id="@+id/control_board_button_b"
+            android:layout_width="@dimen/circle_button_size"
+            android:layout_height="@dimen/circle_button_size"
+            android:layout_margin="@dimen/circle_button_margin"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_button_b"
+            app:cb_color="@color/circleButtonColor"
+            app:cb_pressedRingWidth="@dimen/circle_button_ring_width"
+            app:layout_columnWeight="1" />
 
-    <at.markushi.ui.CircleButton
-        android:id="@+id/control_board_button_b"
-        android:src="@drawable/ic_button_b"
-        android:layout_width="@dimen/circle_button_size"
-        android:layout_height="@dimen/circle_button_size"
-        android:layout_margin="@dimen/circle_button_margin"
-        android:adjustViewBounds="true"
-        app:layout_columnWeight="1"
-        app:cb_color="@color/circleButtonColor"
-        app:cb_pressedRingWidth="@dimen/circle_button_ring_width" />
+        <at.markushi.ui.CircleButton
+            android:id="@+id/control_board_button_left"
+            android:layout_width="@dimen/circle_button_size"
+            android:layout_height="@dimen/circle_button_size"
+            android:layout_margin="@dimen/circle_button_margin"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_button_dir_left"
+            app:cb_color="@color/circleButtonColor"
+            app:cb_pressedRingWidth="@dimen/circle_button_ring_width"
+            app:layout_columnWeight="1" />
 
-    <at.markushi.ui.CircleButton
-        android:id="@+id/control_board_button_left"
-        android:src="@drawable/ic_button_dir_left"
-        android:layout_width="@dimen/circle_button_size"
-        android:layout_height="@dimen/circle_button_size"
-        android:layout_margin="@dimen/circle_button_margin"
-        android:adjustViewBounds="true"
-        app:layout_columnWeight="1"
-        app:cb_color="@color/circleButtonColor"
-        app:cb_pressedRingWidth="@dimen/circle_button_ring_width" />
+        <at.markushi.ui.CircleButton
+            android:id="@+id/control_board_button_close"
+            android:layout_width="@dimen/circle_button_size"
+            android:layout_height="@dimen/circle_button_size"
+            android:layout_margin="@dimen/circle_button_margin"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_button_dir_close"
+            app:cb_color="@color/circleButtonColor"
+            app:cb_pressedRingWidth="@dimen/circle_button_ring_width"
+            app:layout_columnWeight="1" />
 
-    <at.markushi.ui.CircleButton
-        android:id="@+id/control_board_button_close"
-        android:src="@drawable/ic_button_dir_close"
-        android:layout_width="@dimen/circle_button_size"
-        android:layout_height="@dimen/circle_button_size"
-        android:layout_margin="@dimen/circle_button_margin"
-        android:adjustViewBounds="true"
-        app:layout_columnWeight="1"
-        app:cb_color="@color/circleButtonColor"
-        app:cb_pressedRingWidth="@dimen/circle_button_ring_width" />
+        <at.markushi.ui.CircleButton
+            android:id="@+id/control_board_button_right"
+            android:layout_width="@dimen/circle_button_size"
+            android:layout_height="@dimen/circle_button_size"
+            android:layout_margin="@dimen/circle_button_margin"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_button_dir_right"
+            app:cb_color="@color/circleButtonColor"
+            app:cb_pressedRingWidth="@dimen/circle_button_ring_width"
+            app:layout_columnWeight="1" />
 
-    <at.markushi.ui.CircleButton
-        android:id="@+id/control_board_button_right"
-        android:src="@drawable/ic_button_dir_right"
-        android:layout_width="@dimen/circle_button_size"
-        android:layout_height="@dimen/circle_button_size"
-        android:layout_margin="@dimen/circle_button_margin"
-        android:adjustViewBounds="true"
-        app:layout_columnWeight="1"
-        app:cb_color="@color/circleButtonColor"
-        app:cb_pressedRingWidth="@dimen/circle_button_ring_width" />
+        <at.markushi.ui.CircleButton
+            android:id="@+id/control_board_button_c"
+            android:layout_width="@dimen/circle_button_size"
+            android:layout_height="@dimen/circle_button_size"
+            android:layout_margin="@dimen/circle_button_margin"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_button_c"
+            app:cb_color="@color/circleButtonColor"
+            app:cb_pressedRingWidth="@dimen/circle_button_ring_width"
+            app:layout_columnWeight="1" />
 
-    <at.markushi.ui.CircleButton
-        android:id="@+id/control_board_button_c"
-        android:src="@drawable/ic_button_c"
-        android:layout_width="@dimen/circle_button_size"
-        android:layout_height="@dimen/circle_button_size"
-        android:layout_margin="@dimen/circle_button_margin"
-        android:adjustViewBounds="true"
-        app:layout_columnWeight="1"
-        app:cb_color="@color/circleButtonColor"
-        app:cb_pressedRingWidth="@dimen/circle_button_ring_width" />
+        <at.markushi.ui.CircleButton
+            android:id="@+id/control_board_button_down"
+            android:layout_width="@dimen/circle_button_size"
+            android:layout_height="@dimen/circle_button_size"
+            android:layout_margin="@dimen/circle_button_margin"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_button_dir_down"
+            app:cb_color="@color/circleButtonColor"
+            app:cb_pressedRingWidth="@dimen/circle_button_ring_width"
+            app:layout_columnWeight="1" />
 
-    <at.markushi.ui.CircleButton
-        android:id="@+id/control_board_button_down"
-        android:src="@drawable/ic_button_dir_down"
-        android:layout_width="@dimen/circle_button_size"
-        android:layout_height="@dimen/circle_button_size"
-        android:layout_margin="@dimen/circle_button_margin"
-        android:adjustViewBounds="true"
-        app:layout_columnWeight="1"
-        app:cb_color="@color/circleButtonColor"
-        app:cb_pressedRingWidth="@dimen/circle_button_ring_width" />
+        <at.markushi.ui.CircleButton
+            android:id="@+id/control_board_button_d"
+            android:layout_width="@dimen/circle_button_size"
+            android:layout_height="@dimen/circle_button_size"
+            android:layout_margin="@dimen/circle_button_margin"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_button_d"
+            app:cb_color="@color/circleButtonColor"
+            app:cb_pressedRingWidth="@dimen/circle_button_ring_width"
+            app:layout_columnWeight="1" />
 
-    <at.markushi.ui.CircleButton
-        android:id="@+id/control_board_button_d"
-        android:src="@drawable/ic_button_d"
-        android:layout_width="@dimen/circle_button_size"
-        android:layout_height="@dimen/circle_button_size"
-        android:layout_margin="@dimen/circle_button_margin"
-        android:adjustViewBounds="true"
-        app:layout_columnWeight="1"
-        app:cb_color="@color/circleButtonColor"
-        app:cb_pressedRingWidth="@dimen/circle_button_ring_width" />
-
-    <android.support.v7.widget.Space
-        app:layout_columnSpan="3"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1" />
-
-</android.support.v7.widget.GridLayout>
+    </android.support.v7.widget.GridLayout>
+</FrameLayout>
