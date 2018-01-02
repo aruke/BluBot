@@ -23,7 +23,7 @@ import com.myapp.blubot.R;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 
@@ -34,7 +34,7 @@ public class BTConnectionFragment extends Fragment {
     static ArrayList<BluetoothDevice> devices = new ArrayList<>();
     private BluetoothDeviceAdapter adapter;
 
-    @Bind(R.id.fragment_bt_connection_list)
+    @BindView(R.id.fragment_bt_connection_list)
     ListView btListView;
 
     private ConnectionFragmentListener mListener;

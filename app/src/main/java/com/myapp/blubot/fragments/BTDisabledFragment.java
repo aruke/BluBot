@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.myapp.blubot.ConnectionFragmentListener;
 import com.myapp.blubot.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -24,7 +24,7 @@ public class BTDisabledFragment extends Fragment {
     private static final int REQUEST_ENABLE_BT = 1123;
     private ConnectionFragmentListener mListener;
 
-    @Bind(R.id.fragment_bt_disabled_on_button)
+    @BindView(R.id.fragment_bt_disabled_on_button)
     Button turnBTOnButton;
 
     public static BTDisabledFragment newInstance() {

@@ -13,13 +13,13 @@ import android.widget.TextView;
 
 import com.myapp.blubot.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class BTUnavailableFragment extends Fragment {
 
-    @Bind(R.id.fragment_bt_unavailable_github_link)
+    @BindView(R.id.fragment_bt_unavailable_github_link)
     TextView githubLink;
 
     public static BTUnavailableFragment newInstance() {

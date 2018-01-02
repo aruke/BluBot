@@ -9,30 +9,30 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import at.markushi.ui.CircleButton;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ControlActivity extends AppCompatActivity {
 
     OutputStream outputStream;
-    @Bind(R.id.control_board_button_a)
+    @BindView(R.id.control_board_button_a)
     CircleButton controlBoardButtonA;
-    @Bind(R.id.control_board_button_up)
+    @BindView(R.id.control_board_button_up)
     CircleButton controlBoardButtonUp;
-    @Bind(R.id.control_board_button_b)
+    @BindView(R.id.control_board_button_b)
     CircleButton controlBoardButtonB;
-    @Bind(R.id.control_board_button_left)
+    @BindView(R.id.control_board_button_left)
     CircleButton controlBoardButtonLeft;
-    @Bind(R.id.control_board_button_close)
+    @BindView(R.id.control_board_button_close)
     CircleButton controlBoardButtonClose;
-    @Bind(R.id.control_board_button_right)
+    @BindView(R.id.control_board_button_right)
     CircleButton controlBoardButtonRight;
-    @Bind(R.id.control_board_button_c)
+    @BindView(R.id.control_board_button_c)
     CircleButton controlBoardButtonC;
-    @Bind(R.id.control_board_button_down)
+    @BindView(R.id.control_board_button_down)
     CircleButton controlBoardButtonDown;
-    @Bind(R.id.control_board_button_d)
+    @BindView(R.id.control_board_button_d)
     CircleButton controlBoardButtonD;
 
     @Override
