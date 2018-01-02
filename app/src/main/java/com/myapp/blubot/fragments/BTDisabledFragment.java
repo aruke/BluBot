@@ -45,23 +45,21 @@ public class BTDisabledFragment extends Fragment {
     }
 
     @OnClick(R.id.fragment_bt_disabled_on_button)
-    public void turnBTOn(View view)
-    {
+    public void turnBTOn(View view) {
         Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
         startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         Log.e("BT DISABLED", "starting bluetooth enable intent");
-        Toast.makeText(getActivity(),"",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == REQUEST_ENABLE_BT)
-        {
+        if (requestCode == REQUEST_ENABLE_BT) {
             // If user replies affirmative to bluetooth request then start discovery else finish
-            if(resultCode==Activity.RESULT_OK) {
+            if (resultCode == Activity.RESULT_OK) {
                 Log.e("BT DISABLED", "Yes bluetooth is on and im passing control to activity");
-                Toast.makeText(getActivity(),"",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
                 mListener.onBluetoothTurnedOn();
             }
         }

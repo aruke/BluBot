@@ -14,7 +14,7 @@ import java.util.List;
  * Project : BluBot
  * Created by Rajanikant Deshmukh on 11 Aug 2015.
  */
-public class BluetoothDeviceAdapter extends ArrayAdapter<BluetoothDevice>{
+public class BluetoothDeviceAdapter extends ArrayAdapter<BluetoothDevice> {
 
     public BluetoothDeviceAdapter(Context context, List<BluetoothDevice> objects) {
         super(context, R.layout.item_bluetooth_device, objects);
@@ -25,7 +25,7 @@ public class BluetoothDeviceAdapter extends ArrayAdapter<BluetoothDevice>{
 
         BluetoothDevice device = getItem(position);
 
-        if(convertView==null)
+        if (convertView == null)
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_bluetooth_device, parent, false);
 
         TextView deviceName = (TextView) convertView.findViewById(R.id.item_bluetooth_device_name);

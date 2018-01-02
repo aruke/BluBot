@@ -1,6 +1,5 @@
 package com.myapp.blubot.fragments;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.net.Uri;
@@ -41,8 +40,7 @@ public class BTUnavailableFragment extends Fragment {
     }
 
     @OnClick(R.id.fragment_bt_unavailable_github_link)
-    void onGithubLinkClicked(View view)
-    {
+    void onGithubLinkClicked(View view) {
         String url = getString(R.string.github_repo_url);
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));

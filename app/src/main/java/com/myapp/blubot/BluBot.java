@@ -13,7 +13,7 @@ import java.util.UUID;
  * Project : BluBot
  * Created by Rajanikant Deshmukh on 11 Aug 2015.
  */
-public class BluBot extends Application{
+public class BluBot extends Application {
 
     //SerialPortService ID;
     private static final UUID DEVICE_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
@@ -32,8 +32,7 @@ public class BluBot extends Application{
         connectToDevice();
     }
 
-    private static void connectToDevice()
-    {
+    private static void connectToDevice() {
         BluetoothSocket mmSocket;
         try {
             mmSocket = currentDevice.createRfcommSocketToServiceRecord(DEVICE_UUID);
@@ -41,7 +40,7 @@ public class BluBot extends Application{
 
             outputStream = mmSocket.getOutputStream();
             inputStream = mmSocket.getInputStream();
-            
+
         } catch (IOException e) {
             android.util.Log.e("BluBot", e.getLocalizedMessage());
             e.printStackTrace();

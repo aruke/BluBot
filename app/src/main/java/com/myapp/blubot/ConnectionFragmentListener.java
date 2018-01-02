@@ -9,6 +9,8 @@ import android.bluetooth.BluetoothDevice;
 public interface ConnectionFragmentListener {
 
     void onBluetoothTurnedOn();
+
     boolean startBTDeviceDiscovery();
+
     void saveDeviceStartControl(BluetoothDevice device);
 }

@@ -49,10 +49,9 @@ public class ControlActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.fragment_bt_unavailable_github_link)
-    public void onControlButtonClick(View view)
-    {
+    public void onControlButtonClick(View view) {
         int viewId = view.getId();
-        if(outputStream==null)
+        if (outputStream == null)
             return;
         try {
             switch (viewId) {
@@ -85,8 +84,7 @@ public class ControlActivity extends AppCompatActivity {
                     break;
                 default:
             }
-        }catch (IOException e)
-        {
+        } catch (IOException e) {
             Toast.makeText(this, "Could not send signal", Toast.LENGTH_SHORT).show();
         }
     }

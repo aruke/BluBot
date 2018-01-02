@@ -2,29 +2,23 @@ package com.myapp.blubot;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.myapp.blubot.fragments.BTConnectionFragment;
 import com.myapp.blubot.fragments.BTDisabledFragment;
 import com.myapp.blubot.fragments.BTUnavailableFragment;
 
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.UUID;
 
-public class ConnectionActivity extends AppCompatActivity implements ConnectionFragmentListener{
+public class ConnectionActivity extends AppCompatActivity implements ConnectionFragmentListener {
 
     private static final int STATUS_BLUETOOTH_NA = 0;
     private static final int STATUS_BLUETOOTH_OFF = 1;
@@ -48,8 +42,7 @@ public class ConnectionActivity extends AppCompatActivity implements ConnectionF
         }
 
         // Check if bluetooth is off
-        if (!mBluetoothAdapter.isEnabled())
-        {
+        if (!mBluetoothAdapter.isEnabled()) {
             // If Bluetooth is disabled then prompt user to start it
             setFragmentView(STATUS_BLUETOOTH_OFF);
             return;
@@ -76,11 +69,9 @@ public class ConnectionActivity extends AppCompatActivity implements ConnectionF
         unregisterReceiver(mReceiver);
     }
 
-    private void setFragmentView(int status)
-    {
+    private void setFragmentView(int status) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        switch (status)
-        {
+        switch (status) {
             case STATUS_BLUETOOTH_NA:
                 transaction.replace(R.id.activity_connection_layout, BTUnavailableFragment.newInstance()).commit();
                 return;

@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -62,8 +61,7 @@ public class BTConnectionFragment extends Fragment {
     }
 
     @OnItemClick(R.id.fragment_bt_connection_list)
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-    {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         BluetoothDevice device = devices.get(position);
         mListener.saveDeviceStartControl(device);
     }
@@ -78,10 +76,10 @@ public class BTConnectionFragment extends Fragment {
 
         // Start discovery // Need BLUETOOTH_ADMIN permission
         boolean discoveryStarted = mListener.startBTDeviceDiscovery();
-        if(!discoveryStarted)
+        if (!discoveryStarted)
             Toast.makeText(getActivity(), "Bluetooth discovery failed.", Toast.LENGTH_LONG).show();
         Log.e(LOGCAT, "Discovery started");
-        Toast.makeText(getActivity(),"Discovery started",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Discovery started", Toast.LENGTH_SHORT).show();
     }
 
     // Create a BroadcastReceiver for discovery of bluetooth devices
@@ -96,10 +94,10 @@ public class BTConnectionFragment extends Fragment {
                 devices.add(device);
                 adapter.notifyDataSetChanged();
                 android.util.Log.e(LOGCAT, device.getName() + "\n" + device.getAddress());
-                Toast.makeText(getActivity(),"",Toast.LENGTH_SHORT).show();
-            }else {
+                Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
+            } else {
                 android.util.Log.e(LOGCAT, "Action : " + action + " is not bluetooth related.");
-                Toast.makeText(getActivity(),"Action : " + action + " is not bluetooth related.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Action : " + action + " is not bluetooth related.", Toast.LENGTH_SHORT).show();
             }
         }
     };
@@ -120,8 +118,6 @@ public class BTConnectionFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
-
 
     @Override
     public void onPause() {
