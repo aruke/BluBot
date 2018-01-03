@@ -1,12 +1,12 @@
 package com.myapp.blubot.ui.fragments;
 
-import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,11 +16,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.myapp.blubot.ui.BluetoothDeviceAdapter;
-import com.myapp.blubot.ui.ConnectionFragmentListener;
 import com.myapp.blubot.R;
+import com.myapp.blubot.ui.BluetoothDeviceAdapter;
+import com.myapp.blubot.ui.ConnectionActivity;
+import com.myapp.blubot.ui.ConnectionFragmentListener;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,8 +39,9 @@ public class BTConnectionFragment extends Fragment {
     ListView btListView;
 
     private ConnectionFragmentListener mListener;
+    private ConnectionActivity mConnectionActivity;
 
-    public static BTConnectionFragment newInstance(String param1) {
+    public static BTConnectionFragment newInstance() {
         return new BTConnectionFragment();
     }
 
@@ -47,7 +50,7 @@ public class BTConnectionFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_bt_connection, container, false);
@@ -56,8 +59,27 @@ public class BTConnectionFragment extends Fragment {
         adapter = new BluetoothDeviceAdapter(getActivity(), devices);
         btListView.setAdapter(adapter);
 
-        discoverDevices();
+        mConnectionActivity = (ConnectionActivity) getActivity();
+
+        Set<BluetoothDevice> pairedDevices = mConnectionActivity.getBluetoothAdapter().getBondedDevices();
+        if (pairedDevices.size() > 0) {
+            adapter.addAll(pairedDevices);
+            adapter.notifyDataSetChanged();
+        }
+
         return rootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        discoverDevices();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        getContext().unregisterReceiver(bluetoothReceiver);
     }
 
     @OnItemClick(R.id.fragment_bt_connection_list)
@@ -116,11 +138,5 @@ public class BTConnectionFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        getActivity().unregisterReceiver(bluetoothReceiver);
     }
 }

@@ -51,7 +51,9 @@ public class ControlActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick(R.id.fragment_bt_unavailable_github_link)
+    @OnClick({R.id.control_board_button_a, R.id.control_board_button_b, R.id.control_board_button_c,
+            R.id.control_board_button_d, R.id.control_board_button_up, R.id.control_board_button_down,
+            R.id.control_board_button_left, R.id.control_board_button_right, R.id.control_board_button_close})
     public void onControlButtonClick(View view) {
         int viewId = view.getId();
         if (outputStream == null)
