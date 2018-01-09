@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.myapp.blubot.ui.ControlActivity">
+    tools:context="me.rajanikant.blubot.ui.ControlActivity">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"

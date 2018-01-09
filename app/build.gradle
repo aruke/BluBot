@@ -5,7 +5,7 @@ android {
     buildToolsVersion '27.0.1'
 
     defaultConfig {
-        applicationId "com.myapp.blubot"
+        applicationId "me.rajanikant.blubot"
         minSdkVersion 14
         targetSdkVersion 27
         versionCode 1

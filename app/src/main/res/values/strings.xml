@@ -7,7 +7,7 @@
     <string name="github_repo_url">https://github.com/rajanikantdeshmukh/BluBot</string>
     <string name="cd_bluetooth_device">Bluetooth Device</string>
     <string name="bluetooth_not_available">Bluetooth Not Available</string>
-    <string name="bluetooth_na_description">BlueBot can not find Bluetooth on this device. Either this device doesn\'t have Bluetooth module or BluBot has some bug. If your device has Bluetooth and BlueBot is not detecting it, please create an issue on GitHub or email the developer.</string>
+    <string name="bluetooth_na_description">BluBot can not find Bluetooth on this device. Either this device doesn\'t have Bluetooth module or BluBot has some bug. If your device has Bluetooth and BluBot is not detecting it, please create an issue on GitHub or email the developer.</string>
     <string name="GitHub">GitHub</string>
     <string name="bluetooth_disabled">Bluetooth Disabled</string>
     <string name="bt_disabled_description">Bluetooth is disabled. Click button to turn it on.</string>

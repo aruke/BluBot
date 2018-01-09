@@ -1,12 +1,12 @@
-package com.myapp.blubot.ui;
+package me.rajanikant.blubot.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.myapp.blubot.BluBot;
-import com.myapp.blubot.R;
+import me.rajanikant.blubot.BluBot;
+import me.rajanikant.blubot.R;
 
 import java.io.IOException;
 import java.io.OutputStream;

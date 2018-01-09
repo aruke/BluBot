@@ -1,4 +1,4 @@
-package com.myapp.blubot.ui.fragments;
+package me.rajanikant.blubot.ui.fragments;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -16,10 +16,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.myapp.blubot.R;
-import com.myapp.blubot.ui.BluetoothDeviceAdapter;
-import com.myapp.blubot.ui.ConnectionActivity;
-import com.myapp.blubot.ui.ConnectionFragmentListener;
+import me.rajanikant.blubot.R;
+import me.rajanikant.blubot.ui.BluetoothDeviceAdapter;
+import me.rajanikant.blubot.ui.ConnectionActivity;
+import me.rajanikant.blubot.ui.ConnectionFragmentListener;
 
 import java.util.ArrayList;
 import java.util.Set;

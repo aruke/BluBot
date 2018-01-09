@@ -1,4 +1,4 @@
-package com.myapp.blubot.ui;
+package me.rajanikant.blubot.ui;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
@@ -6,11 +6,11 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
-import com.myapp.blubot.BluBot;
-import com.myapp.blubot.R;
-import com.myapp.blubot.ui.fragments.BTConnectionFragment;
-import com.myapp.blubot.ui.fragments.BTDisabledFragment;
-import com.myapp.blubot.ui.fragments.BTUnavailableFragment;
+import me.rajanikant.blubot.BluBot;
+import me.rajanikant.blubot.R;
+import me.rajanikant.blubot.ui.fragments.BTConnectionFragment;
+import me.rajanikant.blubot.ui.fragments.BTDisabledFragment;
+import me.rajanikant.blubot.ui.fragments.BTUnavailableFragment;
 
 public class ConnectionActivity extends BaseActivity implements ConnectionFragmentListener {
 
