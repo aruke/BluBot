@@ -15,43 +15,8 @@ import java.util.UUID;
  */
 public class BluBot extends Application {
 
-    //SerialPortService ID;
-    private static final UUID DEVICE_UUID = UUID.randomUUID();
-
-    private static BluetoothDevice currentDevice = null;
-    private static OutputStream outputStream = null;
-    private static InputStream inputStream = null;
-
     @Override
     public void onCreate() {
         super.onCreate();
-    }
-
-    public static void setCurrentDevice(BluetoothDevice currentDevice) {
-        BluBot.currentDevice = currentDevice;
-        connectToDevice();
-    }
-
-    private static void connectToDevice() {
-        BluetoothSocket mmSocket;
-        try {
-            mmSocket = currentDevice.createRfcommSocketToServiceRecord(DEVICE_UUID);
-            mmSocket.connect();
-
-            outputStream = mmSocket.getOutputStream();
-            inputStream = mmSocket.getInputStream();
-
-        } catch (IOException e) {
-            android.util.Log.e("BluBot", e.getLocalizedMessage());
-            e.printStackTrace();
-        }
-    }
-
-    public static InputStream getInputStream() {
-        return inputStream;
-    }
-
-    public static OutputStream getOutputStream() {
-        return outputStream;
     }
 }

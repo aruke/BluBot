@@ -1,6 +1,5 @@
 package me.rajanikant.blubot.ui;
 
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,15 +7,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.Set;
-
 import at.markushi.ui.CircleButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import me.rajanikant.blubot.BluBot;
 import me.rajanikant.blubot.R;
 
 public class ControlActivity extends BaseActivity {
@@ -39,8 +33,6 @@ public class ControlActivity extends BaseActivity {
     CircleButton controlBoardButtonDown;
     @BindView(R.id.control_board_button_d)
     CircleButton controlBoardButtonD;
-
-    OutputStream outputStream;
     @BindView(R.id.control_device_name)
     TextView textDeviceName;
 
@@ -62,16 +54,7 @@ public class ControlActivity extends BaseActivity {
             finish();
         }
 
-        BluetoothAdapter bluetoothAdapter = getBluetoothAdapter();
-        Set<BluetoothDevice> bondedDevices = bluetoothAdapter.getBondedDevices();
-
         textDeviceName.setText(mSelectedDevice.getName());
-
-        outputStream = BluBot.getOutputStream();
-
-        if (outputStream == null) {
-            Toast.makeText(this, "Device not Paired properly : OutputStream null", Toast.LENGTH_LONG).show();
-        }
     }
 
     @Override
@@ -81,7 +64,7 @@ public class ControlActivity extends BaseActivity {
 
     @Override
     void onBluetoothTurnedOff() {
-        // Finish this activity, and start ConnectionActivity
+        // Finish this activity, and start ConnectionActivity (Already in stack)
         finish();
     }
 
@@ -90,41 +73,36 @@ public class ControlActivity extends BaseActivity {
             R.id.control_board_button_left, R.id.control_board_button_right, R.id.control_board_button_close})
     public void onControlButtonClick(View view) {
         int viewId = view.getId();
-        if (outputStream == null)
-            return;
-        try {
-            switch (viewId) {
-                case R.id.control_board_button_a:
-                    outputStream.write(0x0a);
-                    break;
-                case R.id.control_board_button_b:
-                    outputStream.write(0x0b);
-                    break;
-                case R.id.control_board_button_c:
-                    outputStream.write(0x0c);
-                    break;
-                case R.id.control_board_button_d:
-                    outputStream.write(0x0d);
-                    break;
-                case R.id.control_board_button_up:
-                    outputStream.write(0x01);
-                    break;
-                case R.id.control_board_button_down:
-                    outputStream.write(0x02);
-                    break;
-                case R.id.control_board_button_left:
-                    outputStream.write(0x03);
-                    break;
-                case R.id.control_board_button_right:
-                    outputStream.write(0x04);
-                    break;
-                case R.id.control_board_button_close:
-                    outputStream.write(0x05);
-                    break;
-                default:
-            }
-        } catch (IOException e) {
-            Toast.makeText(this, "Could not send signal", Toast.LENGTH_SHORT).show();
+
+        switch (viewId) {
+            case R.id.control_board_button_a:
+                // Write signal 0x0a
+                break;
+            case R.id.control_board_button_b:
+                // Write signal 0x0b
+                break;
+            case R.id.control_board_button_c:
+                // Write signal 0x0c
+                break;
+            case R.id.control_board_button_d:
+                // Write signal 0x0d
+                break;
+            case R.id.control_board_button_up:
+                // Write signal 0x01
+                break;
+            case R.id.control_board_button_down:
+                // Write signal 0x02
+                break;
+            case R.id.control_board_button_left:
+                // Write signal 0x03
+                break;
+            case R.id.control_board_button_right:
+                // Write signal 0x04
+                break;
+            case R.id.control_board_button_close:
+                // Write signal 0x05
+                break;
+            default:
         }
     }
 }
