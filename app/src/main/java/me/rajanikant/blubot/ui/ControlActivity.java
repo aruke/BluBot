@@ -18,7 +18,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.rajanikant.blubot.BluBot;
 import me.rajanikant.blubot.R;
-import me.rajanikant.blubot.util.Constants;
 
 public class ControlActivity extends BaseActivity {
 
@@ -46,7 +45,6 @@ public class ControlActivity extends BaseActivity {
     TextView textDeviceName;
 
     private BluetoothDevice mSelectedDevice;
-    private String mDeviceAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,23 +54,16 @@ public class ControlActivity extends BaseActivity {
 
         Intent sourceIntent = getIntent();
         if (sourceIntent != null) {
-            mDeviceAddress = sourceIntent.getStringExtra(Constants.INTENT_EXTRA_DEVICE_ADDRESS);
+            mSelectedDevice = sourceIntent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
         }
 
-        if (mDeviceAddress == null || mDeviceAddress.isEmpty()) {
+        if (mSelectedDevice == null) {
             Toast.makeText(this, R.string.device_not_connected, Toast.LENGTH_SHORT).show();
             finish();
         }
 
         BluetoothAdapter bluetoothAdapter = getBluetoothAdapter();
         Set<BluetoothDevice> bondedDevices = bluetoothAdapter.getBondedDevices();
-
-        for (BluetoothDevice bondedDevice : bondedDevices) {
-            if (bondedDevice.getAddress().equals(mDeviceAddress)) {
-                mSelectedDevice = bondedDevice;
-                break;
-            }
-        }
 
         textDeviceName.setText(mSelectedDevice.getName());
 

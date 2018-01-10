@@ -10,9 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import me.rajanikant.blubot.R;
-
 import java.util.List;
+
+import me.rajanikant.blubot.R;
 
 /**
  * Project : BluBot
@@ -34,11 +34,16 @@ public class BluetoothDeviceAdapter extends ArrayAdapter<BluetoothDevice> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_bluetooth_device, parent, false);
 
         TextView deviceName = convertView.findViewById(R.id.item_bluetooth_device_name);
-        TextView deviceSsid = convertView.findViewById(R.id.item_bluetooth_device_ssid);
+        TextView deviceAddress = convertView.findViewById(R.id.item_bluetooth_device_ssid);
         ImageView deviceIcon = convertView.findViewById(R.id.item_bluetooth_device_icon);
 
-        deviceName.setText(device.getName());
-        deviceSsid.setText(device.getAddress());
+        if (device.getName() == null || device.getName().isEmpty()) {
+            deviceName.setText(device.getAddress());
+            deviceAddress.setVisibility(View.GONE);
+        } else {
+            deviceName.setText(device.getName());
+            deviceAddress.setText(device.getAddress());
+        }
 
         if (device.getBondState() == BluetoothDevice.BOND_BONDED)
             deviceIcon.setImageResource(R.drawable.ic_bluetooth_paired);
