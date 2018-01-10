@@ -10,5 +10,5 @@ public interface ConnectionFragmentListener {
 
     boolean startBTDeviceDiscovery();
 
-    void saveDeviceStartControl(BluetoothDevice device);
+    void startDeviceConnection(BluetoothDevice device);
 }

@@ -11,6 +11,7 @@ import me.rajanikant.blubot.R;
 import me.rajanikant.blubot.ui.fragments.BTConnectionFragment;
 import me.rajanikant.blubot.ui.fragments.BTDisabledFragment;
 import me.rajanikant.blubot.ui.fragments.BTUnavailableFragment;
+import me.rajanikant.blubot.util.Constants;
 
 public class ConnectionActivity extends BaseActivity implements ConnectionFragmentListener {
 
@@ -67,12 +68,17 @@ public class ConnectionActivity extends BaseActivity implements ConnectionFragme
     }
 
     @Override
-    public void saveDeviceStartControl(BluetoothDevice device) {
+    public void startDeviceConnection(BluetoothDevice device) {
         // Save the device in app context
-        BluBot.setCurrentDevice(device);
+        //BluBot.setCurrentDevice(device);
+
+        // Cancel discovery to make connection faster
+        getBluetoothAdapter().cancelDiscovery();
 
         // Start Control activity
-        Intent intent = new Intent(getApplicationContext(), ControlActivity.class);
+        Intent intent = new Intent(this, ControlActivity.class);
+        intent.putExtra(Constants.INTENT_EXTRA_DEVICE_NAME, device.getName());
+        intent.putExtra(Constants.INTENT_EXTRA_DEVICE_ADDRESS, device.getAddress());
         startActivity(intent);
     }
 }

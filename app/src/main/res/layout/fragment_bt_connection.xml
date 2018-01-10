@@ -28,11 +28,28 @@
                     android:text="@string/available_devices"
                     android:textSize="20sp" />
 
-                <ImageButton
-                    style="?attr/borderlessButtonStyle"
+                <FrameLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_action_bluetooth" />
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:id="@+id/fragment_bt_connection_refresh_button"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_refresh" />
+
+                    <ProgressBar
+                        android:id="@+id/fragment_bt_connection_refresh_indicator"
+                        style="@style/Widget.AppCompat.ProgressBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:layout_gravity="center" />
+
+                </FrameLayout>
+
+
 
             </LinearLayout>
 

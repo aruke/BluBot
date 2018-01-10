@@ -16,7 +16,7 @@ import java.util.UUID;
 public class BluBot extends Application {
 
     //SerialPortService ID;
-    private static final UUID DEVICE_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
+    private static final UUID DEVICE_UUID = UUID.randomUUID();
 
     private static BluetoothDevice currentDevice = null;
     private static OutputStream outputStream = null;

@@ -1,4 +1,4 @@
-package me.rajanikant.blubot.ui;
+package me.rajanikant.blubot.ui.adapter;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;

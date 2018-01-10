@@ -25,4 +25,5 @@
     <string name="email_developer">Email Developer</string>
     <string name="developer_email">rajanikant.deshmukh@gmail.com</string>
     <string name="email_subject">Bug in BluBot</string>
+    <string name="device_not_connected">Device Not Connected</string>
 </resources>
