@@ -42,6 +42,13 @@ public class ConnectionActivity extends BaseActivity implements ConnectionFragme
             setFragmentView(STATUS_BLUETOOTH_ON);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Remove any memory of previously selected device
+        mSelectedDevice = null;
+    }
+
     private void setFragmentView(int status) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (status) {
