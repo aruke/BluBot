@@ -59,12 +59,12 @@
                             android:layout_weight="1"
                             android:textSize="20sp" />
 
-                        <ImageButton
-                            style="?attr/borderlessButtonStyle"
+                        <ProgressBar
+                            android:id="@+id/control_progress_bar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_action_bluetooth" />
-
+                            android:layout_gravity="center"
+                            android:padding="16dp" />
                     </LinearLayout>
 
                 </android.support.v7.widget.Toolbar>
@@ -88,5 +88,3 @@
     </FrameLayout>
 
 </FrameLayout>
-
-

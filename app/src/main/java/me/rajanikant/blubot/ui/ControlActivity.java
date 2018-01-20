@@ -1,11 +1,18 @@
 package me.rajanikant.blubot.ui;
 
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayout;
+import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.IOException;
+import java.util.UUID;
 
 import at.markushi.ui.CircleButton;
 import butterknife.BindView;
@@ -14,6 +21,13 @@ import butterknife.OnClick;
 import me.rajanikant.blubot.R;
 
 public class ControlActivity extends BaseActivity {
+
+    private static final String TAG = "BluetoothControl";
+    private static final String SERVER_UUID = "00001101-0000-1000-8000-00805F9B34FB";
+    private static final long DELAY = 3000;
+
+    private static final int VIEW_STATE_CONNECTING = 0;
+    private static final int VIEW_STATE_CONNECTED = 1;
 
     @BindView(R.id.control_board_button_a)
     CircleButton controlBoardButtonA;
@@ -35,8 +49,13 @@ public class ControlActivity extends BaseActivity {
     CircleButton controlBoardButtonD;
     @BindView(R.id.control_device_name)
     TextView textDeviceName;
+    @BindView(R.id.control_progress_bar)
+    ProgressBar progressBar;
+    @BindView(R.id.control_board_layout)
+    GridLayout controlBoardLayout;
 
     private BluetoothDevice mSelectedDevice;
+    private ConnectThread mConnectThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +71,21 @@ public class ControlActivity extends BaseActivity {
         if (mSelectedDevice == null) {
             Toast.makeText(this, R.string.device_not_connected, Toast.LENGTH_SHORT).show();
             finish();
+            return;
         }
 
         textDeviceName.setText(mSelectedDevice.getName());
+
+        setViewState(VIEW_STATE_CONNECTING);
+
+        // Start connection to selected device
+        mConnectThread = new ConnectThread(mSelectedDevice);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mConnectThread.start();
     }
 
     @Override
@@ -104,5 +135,99 @@ public class ControlActivity extends BaseActivity {
                 break;
             default:
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mConnectThread.cancel();
+    }
+
+    private class ConnectThread extends Thread {
+
+        private final BluetoothSocket mmSocket;
+
+        ConnectThread(BluetoothDevice device) {
+            // Use a temporary object that is later assigned to mmSocket because mmSocket is final.
+            BluetoothSocket tmp = null;
+
+            try {
+                // Get a BluetoothSocket to connect with the given BluetoothDevice.
+                tmp = device.createInsecureRfcommSocketToServiceRecord(UUID.fromString(SERVER_UUID));
+            } catch (IOException e) {
+                Log.e(TAG, "Socket's create() method failed", e);
+            }
+            mmSocket = tmp;
+        }
+
+        public void run() {
+
+            try { sleep(DELAY); } catch (InterruptedException ignored) {}
+
+            try {
+                // Connect to the remote device through the socket.
+                mmSocket.connect();
+                Log.d(TAG, "run: Socket connected " + (mmSocket.isConnected() ? "true" : "false"));
+            } catch (IOException connectException) {
+
+                // Unable to connect; close the socket and return.
+                Log.e(TAG, "run: ConnectException ", connectException);
+                try {
+                    mmSocket.close();
+                } catch (IOException closeException) {
+                    Log.e(TAG, "Could not close the client socket", closeException);
+                }
+                return;
+            }
+
+            // The connection attempt succeeded. Perform work associated with
+            // the connection in a separate thread.
+            manageConnectedSocket(mmSocket);
+        }
+
+        // Closes the client socket and causes the thread to finish.
+        void cancel() {
+            try {
+                mmSocket.close();
+            } catch (IOException e) {
+                Log.e(TAG, "Could not close the client socket", e);
+            }
+        }
+    }
+
+    private void manageConnectedSocket(BluetoothSocket socket) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                setViewState(VIEW_STATE_CONNECTED);
+            }
+        });
+        // TODO Manage connection here
+    }
+
+    private void setViewState(int viewState) {
+        switch (viewState) {
+            case VIEW_STATE_CONNECTING:
+                progressBar.setVisibility(View.VISIBLE);
+                controlBoardLayout.setAlpha(0.3f);
+                break;
+            case VIEW_STATE_CONNECTED:
+                progressBar.setVisibility(View.GONE);
+                controlBoardLayout.setAlpha(1.0f);
+                break;
+            default:
+                throw new IllegalStateException("View State must be one of VIEW_STATE_CONNECTING or VIEW_STATE_CONNECTED");
+        }
+
+        boolean controlEnabled = viewState == VIEW_STATE_CONNECTED;
+        controlBoardButtonA.setEnabled(controlEnabled);
+        controlBoardButtonB.setEnabled(controlEnabled);
+        controlBoardButtonC.setEnabled(controlEnabled);
+        controlBoardButtonD.setEnabled(controlEnabled);
+        controlBoardButtonUp.setEnabled(controlEnabled);
+        controlBoardButtonDown.setEnabled(controlEnabled);
+        controlBoardButtonLeft.setEnabled(controlEnabled);
+        controlBoardButtonRight.setEnabled(controlEnabled);
+        controlBoardButtonClose.setEnabled(controlEnabled);
     }
 }
