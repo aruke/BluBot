@@ -20,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -143,6 +144,9 @@ public class BTConnectionFragment extends Fragment {
     public void onStart() {
         super.onStart();
         discoverDevices();
+
+        Set<BluetoothDevice> bondedDevices = BluetoothAdapter.getDefaultAdapter().getBondedDevices();
+        mDeviceAdapter.addAll(bondedDevices);
     }
 
     @OnClick(R.id.fragment_bt_connection_refresh_button)
