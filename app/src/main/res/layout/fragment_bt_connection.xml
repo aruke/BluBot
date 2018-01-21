@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     card_view:cardCornerRadius="2dp"
-    tools:context="com.myapp.blubot.fragments.BTConnectionFragment">
+    tools:context=".ui.fragments.BTConnectionFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,17 +22,34 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Available Devices"
+                    android:text="@string/available_devices"
                     android:textSize="20sp" />
 
-                <ImageButton
-                    style="?attr/borderlessButtonStyle"
+                <FrameLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_action_bluetooth" />
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:id="@+id/fragment_bt_connection_refresh_button"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_refresh" />
+
+                    <ProgressBar
+                        android:id="@+id/fragment_bt_connection_refresh_indicator"
+                        style="@style/Widget.AppCompat.ProgressBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:layout_gravity="center" />
+
+                </FrameLayout>
+
+
 
             </LinearLayout>
 
@@ -51,4 +68,5 @@
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/toolbar_height"
         android:listSelector="@drawable/list_item_selector" />
+
 </android.support.v7.widget.CardView>

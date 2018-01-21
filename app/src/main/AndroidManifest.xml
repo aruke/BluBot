@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.myapp.blubot" >
+    package="me.rajanikant.blubot">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
-        android:allowBackup="true"
+        android:name=".BluBot"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".BluBot"
-        android:theme="@style/AppTheme" >
-        <activity
-            android:name=".ConnectionActivity"
-            android:label="@string/title_activity_connection" >
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".ui.ConnectionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ControlActivity"
-            android:label="@string/title_activity_control" >
-        </activity>
+
+        <activity android:name=".ui.ControlActivity" />
+
     </application>
 
 </manifest>
