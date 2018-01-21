@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.UUID;
 
 import at.markushi.ui.CircleButton;
@@ -56,6 +57,7 @@ public class ControlActivity extends BaseActivity {
 
     private BluetoothDevice mSelectedDevice;
     private ConnectThread mConnectThread;
+    private BluetoothSocket mSocket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,13 +80,13 @@ public class ControlActivity extends BaseActivity {
 
         setViewState(VIEW_STATE_CONNECTING);
 
-        // Start connection to selected device
         mConnectThread = new ConnectThread(mSelectedDevice);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        // Start connection to selected device
         mConnectThread.start();
     }
 
@@ -104,36 +106,62 @@ public class ControlActivity extends BaseActivity {
             R.id.control_board_button_left, R.id.control_board_button_right, R.id.control_board_button_close})
     public void onControlButtonClick(View view) {
         int viewId = view.getId();
+        String signal = "";
 
         switch (viewId) {
             case R.id.control_board_button_a:
                 // Write signal 0x0a
+                signal = "0x0A";
                 break;
             case R.id.control_board_button_b:
                 // Write signal 0x0b
+                signal = "0x0B";
                 break;
             case R.id.control_board_button_c:
                 // Write signal 0x0c
+                signal = "0x0C";
                 break;
             case R.id.control_board_button_d:
                 // Write signal 0x0d
+                signal = "0x0D";
                 break;
             case R.id.control_board_button_up:
                 // Write signal 0x01
+                signal = "0x01";
                 break;
             case R.id.control_board_button_down:
                 // Write signal 0x02
+                signal = "0x02";
                 break;
             case R.id.control_board_button_left:
                 // Write signal 0x03
+                signal = "0x03";
                 break;
             case R.id.control_board_button_right:
                 // Write signal 0x04
+                signal = "0x04";
                 break;
             case R.id.control_board_button_close:
                 // Write signal 0x05
+                signal = "0x05";
                 break;
             default:
+        }
+
+        if (mSocket != null) {
+            try {
+                OutputStream outputStream = mSocket.getOutputStream();
+                outputStream.write(signal.getBytes());
+                outputStream.flush();
+
+            } catch (IOException e) {
+                Log.e(TAG, "onControlButtonClick: ", e);
+                e.printStackTrace();
+            }
+        }
+
+        if (viewId == R.id.control_board_button_close) {
+            finish();
         }
     }
 
@@ -141,6 +169,10 @@ public class ControlActivity extends BaseActivity {
     protected void onStop() {
         super.onStop();
         mConnectThread.cancel();
+    }
+
+    public void setSocket(BluetoothSocket socket) {
+        mSocket = socket;
     }
 
     private class ConnectThread extends Thread {
@@ -185,6 +217,16 @@ public class ControlActivity extends BaseActivity {
             manageConnectedSocket(mmSocket);
         }
 
+        private void manageConnectedSocket(final BluetoothSocket socket) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    setViewState(VIEW_STATE_CONNECTED);
+                    setSocket(socket);
+                }
+            });
+        }
+
         // Closes the client socket and causes the thread to finish.
         void cancel() {
             try {
@@ -195,15 +237,6 @@ public class ControlActivity extends BaseActivity {
         }
     }
 
-    private void manageConnectedSocket(BluetoothSocket socket) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                setViewState(VIEW_STATE_CONNECTED);
-            }
-        });
-        // TODO Manage connection here
-    }
 
     private void setViewState(int viewState) {
         switch (viewState) {
