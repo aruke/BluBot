@@ -30,3 +30,7 @@ Preview
 * In case Bluetooth isn't available on mobile.
 
   ![Screenshot](art/no-bt.png)
+
+Licence
+-------
+The source code is available under [MIT Licence](https://github.com/rajanikantdeshmukh/BluBot/blob/master/LICENSE)
