@@ -32,4 +32,4 @@ Follow these steps to download and run BluBot on your local system.
 
 ## Licence
 
-This project is licensed under the MIT License - see the [LICENSE.md]((https://github.com/rajanikantdeshmukh/BluBot/blob/master/LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/rajanikantdeshmukh/BluBot/blob/master/LICENSE.md) file for details.
