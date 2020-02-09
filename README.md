@@ -1,9 +1,8 @@
-# BluBot
-Android application to connect bluetooth module and send signals. The latest build is available on Google Play.
+> This project is archived in favor of new app written in Kotlin.
+> Visit [New Repository](https://github.com/rionlabs/blubot)
 
-<p align="center">
-<a href="https://play.google.com/store/apps/details?id=me.rajanikant.blubot"><img src="https://cdn.rawgit.com/steverichey/google-play-badge-svg/master/img/en_get.svg" width="50%"></a>
-</p>
+# BluBot
+Android application to connect bluetooth module and send signals.
 
 ## Getting Started
 Follow these steps to download and run BluBot on your local system.
